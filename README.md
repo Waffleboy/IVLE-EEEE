@@ -4,6 +4,8 @@ As the saying goes, necessity is the mother of invention. Yj's original IVLEDown
 
 It's pretty basic now (without any fancy UI) but I'll get to that when I have time, or if someone requests it.
 
+Also, the code is not very clean and properly documented because it was done in a rush, will update when time is available. (Not like anyone is going to read this anyway)
+
 ## Instructions
 
 ```
