@@ -17,7 +17,6 @@ API_KEY = os.environ['IVLE_LAPI_KEY']
 IVLE_LOGIN = 'a0130737'
 IVLE_PASS = os.environ['IVLE_PASS']
 TOKEN = ivle_token_generator.getToken(API_KEY,IVLE_LOGIN,IVLE_PASS,headers)
-filesDownloaded = {}
 
 # get all mods taken in current semester
 def getCurrSemMods():
@@ -43,28 +42,16 @@ def getAllWorkbinsFromWorkbinID(workbinID_dic):
         workbins.append(requests.get(URL,headers=headers).json()['Results'])
     return workbins
     
-# print all files downloaded
-def showFilesDownloaded():
-    global filesDownloaded
-    counter = 1
-    print('%s New File(s) Downloaded' % len(filesDownloaded))
-    for module in filesDownloaded:
-        print('---- ' + module +' ----')
-        for file in filesDownloaded[module]:
-            print('%s. %s' % (counter,file))
-            counter += 1
-        counter = 1
-    return
-    
 
 def run():
     global FOLDER_DOWNLOAD_LOCATION
-    workbin_files_downloader.makeIfDoesntExist(FOLDER_DOWNLOAD_LOCATION)
     modules = getCurrSemMods()
     workbinIDs = getWorkbinIDFromOpenMods(modules)
     workbins = getAllWorkbinsFromWorkbinID(workbinIDs)
-    workbin_files_downloader.downloadAll(workbins,workbinIDs,FOLDER_DOWNLOAD_LOCATION)
-    showFilesDownloaded()
+    workBinDownloader = workbin_files_downloader.WorkbinFileDownloader(workbins,workbinIDs,FOLDER_DOWNLOAD_LOCATION,API_KEY,TOKEN)
+    workBinDownloader.makeIfDoesntExist(FOLDER_DOWNLOAD_LOCATION) #from workbin downloader
+    workBinDownloader.downloadAll() #from workbin downloader
+    workBinDownloader.showFilesDownloaded()
     
 if __name__ == '__main__':
     run()
