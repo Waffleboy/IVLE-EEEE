@@ -16,17 +16,17 @@ headers = { 'User-Agent': 'Mozilla/5.0 (Windows NT 6.0; WOW64; rv:24.0) Gecko/20
 API_KEY = os.environ['IVLE_LAPI_KEY']
 IVLE_LOGIN = 'a0130737'
 IVLE_PASS = os.environ['IVLE_PASS']
-TOKEN = ivle_token_generator.getToken(API_KEY,IVLE_LOGIN,IVLE_PASS,headers)
+TOKEN = ivle_token_generator.get_token(API_KEY,IVLE_LOGIN,IVLE_PASS,headers)
 
 # get all mods taken in current semester
-def getCurrSemMods():
+def get_curr_sem_mods():
     global API_KEY,TOKEN,headers
     URL = 'https://ivle.nus.edu.sg/api/Lapi.svc/Modules_Student?APIKey='+API_KEY+'&AuthToken='+TOKEN+'&Duration=0&IncludeAllInfo=true'
     modules = requests.get(URL,headers=headers).json()['Results']
     return modules
 
 # get workbin ID from modules in current semester
-def getWorkbinIDFromOpenMods(modules):
+def get_workbin_id_from_open_mods(modules):
     dic = {}
     for module in modules:
         if module['Workbins']:
@@ -34,7 +34,7 @@ def getWorkbinIDFromOpenMods(modules):
     return dic
 
 # get full workbins from workbin ID
-def getAllWorkbinsFromWorkbinID(workbinID_dic):
+def get_all_workbins_from_workbin_id(workbinID_dic):
     global API_KEY,TOKEN,headers
     workbins = []
     for WORKBIN_ID in workbinID_dic.values():
@@ -45,13 +45,13 @@ def getAllWorkbinsFromWorkbinID(workbinID_dic):
 
 def run():
     global FOLDER_DOWNLOAD_LOCATION
-    modules = getCurrSemMods()
-    workbinIDs = getWorkbinIDFromOpenMods(modules)
-    workbins = getAllWorkbinsFromWorkbinID(workbinIDs)
-    workBinDownloader = workbin_files_downloader.WorkbinFileDownloader(workbins,workbinIDs,FOLDER_DOWNLOAD_LOCATION,API_KEY,TOKEN)
-    workBinDownloader.makeIfDoesntExist(FOLDER_DOWNLOAD_LOCATION) #from workbin downloader
-    workBinDownloader.downloadAll() #from workbin downloader
-    workBinDownloader.showFilesDownloaded()
+    modules = get_curr_sem_mods()
+    workbinIDs = get_workbin_id_from_open_mods(modules)
+    workbins = get_all_workbins_from_workbin_id(workbinIDs)
+    workbin_downloader = workbin_files_downloader.WorkbinFileDownloader(workbins,workbinIDs,FOLDER_DOWNLOAD_LOCATION,API_KEY,TOKEN)
+    workbin_downloader.makeIfDoesntExist(FOLDER_DOWNLOAD_LOCATION) #from workbin downloader
+    workbin_downloader.downloadAll() #from workbin downloader
+    workbin_downloader.showFilesDownloaded()
     
 if __name__ == '__main__':
     run()
