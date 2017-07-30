@@ -11,12 +11,17 @@ import ivle_token_generator
 # downloader from workbins
 import workbin_files_downloader
 
-FOLDER_DOWNLOAD_LOCATION = '/storage/NUS STUFF/LectureTutorials/IVLE'
-headers = { 'User-Agent': 'Mozilla/5.0 (Windows NT 6.0; WOW64; rv:24.0) Gecko/20100101 Firefox/24.0'}
+#==============================================================================
+#                               Options
+#==============================================================================
+FOLDER_DOWNLOAD_LOCATION = '/storage/NUS_STUFF/LectureTutorials/IVLE'
 API_KEY = os.environ['IVLE_LAPI_KEY']
 IVLE_LOGIN = 'a0130737'
 IVLE_PASS = os.environ['IVLE_PASS']
 TOKEN = ivle_token_generator.get_token(API_KEY,IVLE_LOGIN,IVLE_PASS,headers)
+IGNORE_LIST = set(["OSA1003"])
+headers = { 'User-Agent': 'Mozilla/5.0 (Windows NT 6.0; WOW64; rv:24.0) Gecko/20100101 Firefox/24.0'}
+#==============================================================================
 
 # get all mods taken in current semester
 def get_curr_sem_mods():
@@ -27,9 +32,12 @@ def get_curr_sem_mods():
 
 # get workbin ID from modules in current semester
 def get_workbin_id_from_open_mods(modules):
+    global IGNORE_LIST
     dic = {}
     for module in modules:
         if module['Workbins']:
+            if module['CourseCode'] in IGNORE_LIST:
+                continue
             dic[module['CourseCode']] = module['Workbins'][0]['ID']
     return dic
 
