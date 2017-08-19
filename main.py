@@ -49,7 +49,6 @@ def get_all_workbins_from_workbin_id(workbinID_dic):
         URL='https://ivle.nus.edu.sg/api/Lapi.svc/Workbins?APIKey='+API_KEY+'&AuthToken='+TOKEN+'&WorkbinID='+WORKBIN_ID+'+&Duration=0'#&&TitleOnly=false'
         workbins.append(requests.get(URL,headers=headers).json()['Results'])
     return workbins
-    
 
 def run():
     global FOLDER_DOWNLOAD_LOCATION
@@ -60,6 +59,6 @@ def run():
     workbin_downloader.makeIfDoesntExist(FOLDER_DOWNLOAD_LOCATION) #from workbin downloader
     workbin_downloader.downloadAll() #from workbin downloader
     workbin_downloader.showFilesDownloaded()
-    
+
 if __name__ == '__main__':
     run()
