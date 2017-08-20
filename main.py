@@ -52,8 +52,10 @@ def get_all_workbins_from_workbin_id(workbinID_dic):
 
 def run():
     global FOLDER_DOWNLOAD_LOCATION
+    print("Acquiring current semester modules..")
     modules = get_curr_sem_mods()
     workbinIDs = get_workbin_id_from_open_mods(modules)
+    print("Getting workbins..")
     workbins = get_all_workbins_from_workbin_id(workbinIDs)
     workbin_downloader = workbin_files_downloader.WorkbinFileDownloader(workbins,workbinIDs,FOLDER_DOWNLOAD_LOCATION,API_KEY,TOKEN)
     workbin_downloader.makeIfDoesntExist(FOLDER_DOWNLOAD_LOCATION) #from workbin downloader
