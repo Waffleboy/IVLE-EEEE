@@ -10,7 +10,9 @@ Also, the code is not very clean and properly documented because it was done in 
 
 ```
 git clone git@github.com:Waffleboy/IVLE-EEEE.git
+pip install -r requirements.txt
 ```
+
 
 Then, set the `FOLDER_DOWNLOAD_LOCATION` to your specified folder, fill in your `LAPI API` key, `IVLE username` and `password`, then just run
 
