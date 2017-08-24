@@ -4,18 +4,25 @@ As the saying goes, necessity is the mother of invention. Yj's original IVLEDown
 
 It's pretty basic now (without any fancy UI) but I'll get to that when I have time, or if someone requests it.
 
-Also, the code is not very clean and properly documented because it was done in a rush, will update when time is available. (Not like anyone is going to read this anyway)
+Also, the code is not the cleanest and nicely documented because it was done in a rush, will update when time is available. (Not like anyone is going to read this anyway)
 
 ## Instructions
 
 ```
 git clone git@github.com:Waffleboy/IVLE-EEEE.git
+pip install -r requirements.txt
 ```
 
-Set the FOLDER_DOWNLOAD_LOCATION to your specified folder, fill in your LAPI API key, IVLE username and password, then just run
+
+Then, set the `FOLDER_DOWNLOAD_LOCATION` to your specified folder, fill in your `LAPI API` key, `IVLE username` and `password`, then just run
+
 ```
 python main.py
 ```
+
+A LAPI API key can be obtained by: 
+
+`Going to IVLE, log in, then enter this URL: http://ivle.nus.edu.sg/LAPI/default.aspx`
 
 ## Random notes
 
