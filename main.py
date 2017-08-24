@@ -26,7 +26,7 @@ TOKEN = ivle_token_generator.get_token(API_KEY,IVLE_LOGIN,IVLE_PASS,headers)
 # get all mods taken in current semester
 def get_curr_sem_mods():
     global API_KEY,TOKEN,headers
-    URL = 'https://ivle.nus.edu.sg/api/Lapi.svc/Modules_Student?APIKey='+API_KEY+'&AuthToken='+TOKEN+'&Duration=0&IncludeAllInfo=true'
+    URL = 'https://ivle.nus.edu.sg/api/Lapi.svc/Modules?APIKey='+API_KEY+'&AuthToken='+TOKEN+'&Duration=0&IncludeAllInfo=true'
     modules = requests.get(URL,headers=headers).json()['Results']
     return modules
 
