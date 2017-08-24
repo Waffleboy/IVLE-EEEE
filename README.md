@@ -12,10 +12,15 @@ Also, the code is not very clean and properly documented because it was done in 
 git clone git@github.com:Waffleboy/IVLE-EEEE.git
 ```
 
-Set the FOLDER_DOWNLOAD_LOCATION to your specified folder, fill in your LAPI API key, IVLE username and password, then just run
+Then, set the `FOLDER_DOWNLOAD_LOCATION` to your specified folder, fill in your `LAPI API` key, `IVLE username` and `password`, then just run
+
 ```
 python main.py
 ```
+
+A LAPI API key can be obtained by: 
+
+`Going to IVLE, log in, then enter this URL: http://ivle.nus.edu.sg/LAPI/default.aspx`
 
 ## Random notes
 
