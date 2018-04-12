@@ -1,4 +1,4 @@
-# IVLEDownloader written in Python
+# IVLE Downloader written in Python
 
 As the saying goes, necessity is the mother of invention. Yj's original IVLEDownloader did not work for me on Ubuntu 16.04. Hence, I wrote this for anyone else who's suffering from the same problem, and cannot live without this amazingly helpful tool.
 
@@ -29,3 +29,4 @@ A LAPI API key can be obtained by:
 If you just want to get an IVLE token to play with LAPI yourself and cant seem to figure out how, feel free to use ivle_token_generator.py. I'm surprised there isn't something like this already.
 
 At some point, I might just create a python wrapper for LAPI, depending on time available.
+
